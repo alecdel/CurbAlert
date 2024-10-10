@@ -152,3 +152,4 @@ For answers to common questions about this code of conduct, see the FAQ at
 [translations]: https://www.contributor-covenant.org/translations
 
 ![dtucchio Signature](src/dtucchio.jpeg)
+![jlacouture Signature](src/jacob_lacouture_signature.png)
