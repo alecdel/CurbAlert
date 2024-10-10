@@ -153,3 +153,4 @@ For answers to common questions about this code of conduct, see the FAQ at
 
 ![dtucchio Signature](src/dtucchio.jpeg)
 ![jlacouture Signature](src/jacob_lacouture_signature.png)
+![alecdel_Signature](src/alec_delloIacono_signature.png)
