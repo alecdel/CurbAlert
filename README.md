@@ -4,7 +4,6 @@ Curb Alert! is a mobile app designed to help people share and find items that ar
 
 ## Table of Contents
 - [Features](#features)
-- [User Personas](#user-personas)
 - [Technology Stack](#technology-stack)
 - [Usage](#usage)
 - [Contributors](#contributors)
@@ -17,14 +16,6 @@ Curb Alert! is a mobile app designed to help people share and find items that ar
 - **Notifications**: Receive notifications when new items are posted in your area.
 - **User Authentication**: Sign up or log in via email with Firebase Authentication.
 - **Ads Integration**: Revenue is generated through ad placements within the app.
-
-## User Personas
-
-We developed the app with specific user groups in mind to ensure it meets the needs of a diverse audience:
-1. **Widows**: Recently lost a spouse and looking to clear out remaining items.
-2. **Hoarders**: Individuals who tend to accumulate too many items and are seeking ways to declutter.
-3. **Low-Income Individuals**: People who could benefit from free items.
-4. **Families Moving**: Families moving in or out of homes who need to offload or acquire furniture and appliances.
 
 ## Technology Stack
 
