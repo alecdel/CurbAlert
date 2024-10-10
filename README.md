@@ -6,11 +6,8 @@ Curb Alert! is a mobile app designed to help people share and find items that ar
 - [Features](#features)
 - [User Personas](#user-personas)
 - [Technology Stack](#technology-stack)
-- [Installation](#installation)
 - [Usage](#usage)
-- [Future Plans](#future-plans)
 - [Contributors](#contributors)
-- [License](#license)
 
 ## Features
 
