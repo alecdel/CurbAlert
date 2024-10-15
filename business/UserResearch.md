@@ -16,3 +16,9 @@ Observation Statement: Users are not usually in the process of moving
 
 Supporting Data: In the research survey, 3/21 participants said they were not actively moving
 
+## Observation 3:
+
+Observation Statement: Even though 16/21 people are not currently looking to downsize or clear out items, people would be encouraged to declutter more regularly if they knew items were going to someone who could use them?
+
+Supporting Data: 13 out of the 16 people who are not looking to declutter said they would be encouraged to declutter more often if they were going to people who needed them.
+
