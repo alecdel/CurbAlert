@@ -22,3 +22,10 @@ Observation Statement: Even though 16/21 people are not currently looking to dow
 
 Supporting Data: 13 out of the 16 people who are not looking to declutter said they would be encouraged to declutter more often if they were going to people who needed them.
 
+## Observation 4:
+
+Observation Statement: People are more likely to look for appliances or tools when compared to furniture. 
+
+Supporting Data: 13/21 people would be most interested in finding appliances and tools when moving, while 10/21 people would be interested in furniture.
+
+Team Action: Add a feature that allows users to filter items by type on the platform. This should allow users to look for specifically what they are interested in.
