@@ -21,4 +21,4 @@
 - Custom retention events will be added to log repeat activity, and these will be timestamped to track return rates.
 
 ### Task Success
-- 
+- The success rate from when a user starts creating an item listing to when the listing is actully published. To see if they finished to listing.
