@@ -8,7 +8,9 @@
 - Net Promoter Score - The user will be prompted to answer the survey when opening the messages feature of the application.
 
 ### Engagement
-- 
+- Firebase Analytics will be used to automatically track Daily Active Users (DAU) by logging each unique user session on a daily basis.
+- We will configure Firebase Analytics to track user engagement across key activities (login, posting an item, browsing items).
+- Additional custom events may be set up to measure daily engagement with features such as item views and successful transactions.
 
 ### Adoption
 - Adoption rate will be gathered with Firebase analytics to see the rate at which new emails are signing up for the app.
