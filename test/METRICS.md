@@ -6,4 +6,4 @@
 
 Net Promoter Score - The user will be prompted to answer the survey when opening the messages feature of the application.
 
-Retention - Retention rate will be gathered via Firebase to see the overall rate for users returning to the app.
+Retention - Retention rate will be gathered via Firebase analytics to see the overall rate for users returning to the app.
