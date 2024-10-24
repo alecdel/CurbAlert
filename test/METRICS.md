@@ -4,6 +4,14 @@
 
 ## Metrics
 
+### Happiness
 Net Promoter Score - The user will be prompted to answer the survey when opening the messages feature of the application.
 
+### Engagement
+
+### Adoption
+
+### Retention
 Retention - Retention rate will be gathered via Firebase analytics to see the overall rate for users returning to the app.
+
+### Task Success
