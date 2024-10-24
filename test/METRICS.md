@@ -11,7 +11,9 @@
 - 
 
 ### Adoption
-- 
+- Adoption rate will be gathered with Firebase analytics to see the rate at which new emails are signing up for the app.
+- Custom events will be added to log when a user posts their first item.
+- Custom events will be added to log how long it takes for a user to post their first item.
 
 ### Retention
 - Retention rate will be gathered via Firebase analytics to see the overall rate for users returning to the app.
