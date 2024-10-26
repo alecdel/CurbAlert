@@ -33,7 +33,37 @@ Variation B Example:
 <img height="450" alt="Variation B" src="https://github.com/user-attachments/assets/4ba566e4-d376-494d-924c-356fe43873f0">
 
 
-## Test 2
+## A/B Test 2: Item Listing
+User Story Number: US4 - Golden Path UI/UX
+
+Metrics:
+- Happiness: User ratings on app usability.
+- Engagement: Time spent in the app, items viewed per session.
+- Retention: Continued use of app item listing features over multiple weeks.
+- Task Success: Users are able to successfully view details about an item.
+
+Hypothesis: Including a grid view of items instead of a list view will allow users to view more items at once and force them to click on items for more details, increasing engagment and task success.
+
+This A/B Test will measure the most positively recieved screen layout for one of the apps main features, item listings. The question is whether having a list view like many shopping apps will increase user engagement with the app, compared to having a more condensed grid view in which users must click on an item to view most of its details.
+
+Experiment: All users will be a part of this experiment. 50% of users will see a list view of items, while the other 50% will see a grid view. This UI design may be an incredibly important factor in user engagement and experience so it is important to get the feedback from the entire user population.
+
+Firebase Remote Configuration will enable seamlessly toggling between variations, while Firebase A/B Testing will randomize users and automate metrics collection. Using Firebase Analytics, we will track key HEART metrics such as user engagement through item viewing actions per session; happines through the net promoter score; and task success through the click through rate and number of items interacted with. 
+
+Variations: There will be two variations for this test.
+
+The first variation, or variation A, will use a list design for item viewing, including a small image, a short description of the item, and the distance it is from a users current location. This layout is designed to include more extensive information without a user needing to interact with the item posting.
+
+Variation A Example: 
+
+<img alt="Variation A" src="">
+
+The second variation, or variation B, will use a grid design layout for item viewing. In this design, there will only be an image of the item and its distance from the users current location. All other information about the item will be on a separate page that is navigated to after a user clicks on an item in the list. This layout design is intended to increase user engagement with the item listing screen by giving users more reasons to view an items details.
+
+Varation B Example:
+
+<img alt="Variation B" src="">
+
 
 ## Test 3
 
