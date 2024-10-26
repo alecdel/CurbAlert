@@ -66,6 +66,26 @@ Varation B Example:
 
 
 
-## Test 3
+## Test 3 Messaging Interface Design
+User Story Number: US5 - User-to-User Messaging
+
+Metrics:
+
+Happiness: User satisfaction ratings on the messaging experience.
+Engagement: Frequency and duration of messaging interactions per session.
+Task Success: Successful completion of messaging tasks, such as initiating and replying to conversations.
+Hypothesis: Switching to a streamlined, chat-style messaging interface will make conversations feel more fluid and engaging, leading to more frequent use and higher task success.
+
+Problem and Impact: Users may feel disconnected or frustrated by a traditional messaging layout, where messages are grouped in inbox and outbox views, rather than a continuous chat format. This could impact task success and engagement, especially for users seeking real-time or ongoing conversations.
+
+Experiment: All users with messaging permissions will be included. Firebase will assign 50% of users to see a chat-style interface (Variation A) and the other 50% to see the traditional inbox/outbox format (Variation B). Firebase Remote Config will enable switching between the two interfaces, while Firebase Analytics will monitor HEART metrics, particularly engagement (messages sent and received) and task success (messages successfully opened and replied to).
+
+Variations:
+
+Variation A (Chat-Style Interface): A continuous chat format, similar to popular messaging apps, showing all messages in one flowing conversation view. Users can see the latest messages at the bottom and send replies instantly, enhancing the sense of real-time communication.
+
+Variation B (Inbox/Outbox Format): A more traditional messaging format with separate views for incoming and outgoing messages. Users have to navigate between inbox and outbox to see sent and received messages, which may help organization but could slow down interaction.
+
+This test will help determine if a chat-style interface increases engagement and task success by making conversations feel more direct and real-time, compared to a segmented inbox/outbox setup.
 
 ## Test 4
