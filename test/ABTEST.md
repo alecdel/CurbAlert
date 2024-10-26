@@ -56,13 +56,14 @@ The first variation, or variation A, will use a list design for item viewing, in
 
 Variation A Example: 
 
-<img alt="Variation A" src="">
+![image](https://github.com/user-attachments/assets/956cd248-4d25-4c3d-bbef-967c210ff823)
 
 The second variation, or variation B, will use a grid design layout for item viewing. In this design, there will only be an image of the item and its distance from the users current location. All other information about the item will be on a separate page that is navigated to after a user clicks on an item in the list. This layout design is intended to increase user engagement with the item listing screen by giving users more reasons to view an items details.
 
 Varation B Example:
 
-<img alt="Variation B" src="">
+![image](https://github.com/user-attachments/assets/574ec1cc-d780-4983-b16e-3c41d9bd212c)
+
 
 
 ## Test 3
