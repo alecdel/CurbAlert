@@ -88,4 +88,37 @@ Variation B (Inbox/Outbox Format): A more traditional messaging format with sepa
 
 This test will help determine if a chat-style interface increases engagement and task success by making conversations feel more direct and real-time, compared to a segmented inbox/outbox setup.
 
-## Test 4
+## A/B Test 4: Sale Completion Process
+
+**User Story Number**: US5 - Completing a Sale
+
+**Metrics**:
+- **Happiness**: User feedback ratings on ease of sale completion.
+- **Task Success**: Rate of successful sale completions.
+- **Conversion Rate**: Number of listings that lead to a completed sale.
+- **Engagement**: Time taken to complete the sale process and number of steps involved.
+
+**Hypothesis**: Streamlining the sale process by reducing the number of steps will improve the user experience, leading to higher completion rates and greater overall satisfaction.
+
+**Problem and Impact**: A lengthy or complex sale completion process may discourage users from completing transactions, lowering conversion rates and user satisfaction. A simplified process could reduce friction and boost completion rates.
+
+**Experiment**: All users participating in the sale process will be included in this test. 50% will experience a streamlined process (Variation A), while the other 50% will experience the standard process with more detailed prompts (Variation B). Firebase Remote Configuration will enable seamless toggling between variations, while Firebase A/B Testing will randomize users and collect metrics.
+
+**Variations**:
+
+- **Variation A (Streamlined Process)**: The sale completion page has a minimal set of fields, focusing only on essential actions—confirming the item pickup and marking the item as “sold.” This reduces steps and aims to provide a faster experience.
+
+  **Variation A Example**:
+  - Mark as "Sold" button
+  - Quick rating system for both parties (optional)
+  - Option to add a brief review or feedback (optional)
+
+- **Variation B (Detailed Process)**: The sale completion page includes additional fields, such as verifying item details, confirming transaction type (if it was picked up or left on the curb), and allowing users to enter feedback. This design is intended to give users more control and detail, potentially increasing task success through clarity.
+
+  **Variation B Example**:
+  - Mark as "Sold" button
+  - Optional fields for pickup location confirmation
+  - Required review field for feedback on the transaction
+
+This test will reveal whether users prefer a simpler process, resulting in a quicker sale, or if additional details improve the quality of the experience, leading to higher satisfaction and task success.
+
