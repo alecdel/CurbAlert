@@ -1,0 +1,18 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "items",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "listingOwner",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "pickedUp",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
+}
