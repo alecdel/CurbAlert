@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "306021565398",
+    "project_id": "curb-alert-sqkv43",
+    "storage_bucket": "curb-alert-sqkv43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306021565398:android:bec3d683c08d2112d3da77",
+        "android_client_info": {
+          "package_name": "edu.uri.csc305.curbalert"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO0d9_yyCNH0F7LkQkkegTkohJ_h3FJEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
