@@ -44,10 +44,10 @@ Curb Alert! is a mobile app designed to help people share and find items that ar
 - Create an account or log in to manage your posted items and preferences.
 
 ## Contributors
-- 
-- 
-- 
-- 
+- Ryan Megna
+- Alec Dello Lacono
+- Jacob Lacouture
+- Dominic Tucchio
 
 
 
