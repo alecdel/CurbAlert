@@ -14,3 +14,6 @@
 
 ### User Story 5: User Messaging
 [Unit Test](https://docs.google.com/presentation/d/1Xf0odr_uDdOO0dhj1tb20LWtCdFLsVap2Fo5M6gaqOs/edit?usp=sharing)
+
+### User Story 6: Metrics Collection
+[Unit Test](https://docs.google.com/presentation/d/1Hl1ilf3a0FVPScj7KGgxW79da9syfq6Uf76n4Mfihvc/edit?usp=sharing)
