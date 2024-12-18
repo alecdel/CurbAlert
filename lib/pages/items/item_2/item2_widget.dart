@@ -162,7 +162,10 @@ class _Item2WidgetState extends State<Item2Widget> {
                           letterSpacing: 0.0,
                         ),
                     elevation: 0.0,
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).secondary,
+                    ),
+                    borderRadius: BorderRadius.circular(14.0),
                   ),
                 ),
               ].divide(const SizedBox(height: 12.0)),

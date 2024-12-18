@@ -6,7 +6,26 @@ import 'conversation_model.dart';
 export 'conversation_model.dart';
 
 class ConversationWidget extends StatefulWidget {
-  const ConversationWidget({super.key});
+  const ConversationWidget({
+    super.key,
+    required this.photoPath,
+    required this.chatTitle,
+    required this.recentUpdate,
+    this.message,
+    bool? seenbyRef,
+    required this.membersRef,
+    this.ownerDisplayName,
+    this.userDisplayName,
+  }) : seenbyRef = seenbyRef ?? false;
+
+  final String? photoPath;
+  final String? chatTitle;
+  final String? recentUpdate;
+  final String? message;
+  final bool seenbyRef;
+  final List<String>? membersRef;
+  final String? ownerDisplayName;
+  final String? userDisplayName;
 
   @override
   State<ConversationWidget> createState() => _ConversationWidgetState();
@@ -40,6 +59,7 @@ class _ConversationWidgetState extends State<ConversationWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
+      height: 75.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
         borderRadius: const BorderRadius.only(
@@ -57,20 +77,20 @@ class _ConversationWidgetState extends State<ConversationWidget> {
         padding: const EdgeInsetsDirectional.fromSTEB(20.0, 12.0, 20.0, 12.0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Align(
               alignment: const AlignmentDirectional(-1.0, 0.0),
               child: AuthUserStreamWidget(
                 builder: (context) => Container(
-                  width: 95.0,
-                  height: 95.0,
+                  width: 50.0,
+                  height: 50.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: Image.asset(
-                        'assets/images/Curb_Alert!_logo_no_bg.png',
+                      image: Image.network(
+                        currentUserPhoto,
                       ).image,
                     ),
                     borderRadius: BorderRadius.circular(68.0),
@@ -79,21 +99,99 @@ class _ConversationWidgetState extends State<ConversationWidget> {
                       width: 1.0,
                     ),
                   ),
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(50.0),
+                      bottomRight: Radius.circular(50.0),
+                      topLeft: Radius.circular(50.0),
+                      topRight: Radius.circular(50.0),
+                    ),
+                    child: Image.network(
+                      valueOrDefault<String>(
+                        widget.photoPath,
+                        '\"C:\\Users\\Jacob\\Downloads\\CurbAlertLogo.png\"',
+                      ),
+                      width: 50.0,
+                      height: 50.0,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
             ),
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  'Display Name',
-                  style: FlutterFlowTheme.of(context).bodyLarge.override(
-                        fontFamily: 'Inter',
-                        letterSpacing: 0.0,
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        valueOrDefault<String>(
+                          widget.chatTitle,
+                          'chatTitle',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyLarge.override(
+                              fontFamily: 'Inter',
+                              letterSpacing: 0.0,
+                            ),
                       ),
-                ),
-              ].divide(const SizedBox(height: 12.0)),
+                      Text(
+                        valueOrDefault<String>(
+                          widget.membersRef?.firstOrNull == currentUserUid
+                              ? widget.ownerDisplayName
+                              : widget.userDisplayName,
+                          'displayName',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Inter',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                      Text(
+                        valueOrDefault<String>(
+                          widget.recentUpdate,
+                          'recentUpdate',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodySmall.override(
+                              fontFamily: 'Inter',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                    ].divide(const SizedBox(width: 12.0)),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          valueOrDefault<String>(
+                            widget.message,
+                            'message',
+                          ).maybeHandleOverflow(
+                            maxChars: 32,
+                            replacement: '…',
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Inter',
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              Icons.circle_sharp,
+              color: widget.seenbyRef
+                  ? FlutterFlowTheme.of(context).secondaryText
+                  : FlutterFlowTheme.of(context).primary,
+              size: 24.0,
             ),
           ].divide(const SizedBox(width: 12.0)),
         ),

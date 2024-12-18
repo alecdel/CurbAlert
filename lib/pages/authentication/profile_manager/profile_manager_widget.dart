@@ -2,12 +2,10 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/components/nav_bar_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'profile_manager_model.dart';
 export 'profile_manager_model.dart';
@@ -56,7 +54,10 @@ class _ProfileManagerWidgetState extends State<ProfileManagerWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -187,13 +188,6 @@ class _ProfileManagerWidgetState extends State<ProfileManagerWidget> {
                               return;
                             }
                           }
-
-                          logFirebaseEvent('Stack_backend_call');
-
-                          await currentUserReference!
-                              .update(createUsersRecordData(
-                            photoUrl: _model.uploadedFileUrl,
-                          ));
                         },
                         child: Stack(
                           alignment: const AlignmentDirectional(1.0, 1.0),
@@ -221,25 +215,43 @@ class _ProfileManagerWidgetState extends State<ProfileManagerWidget> {
                                       width: 1.0,
                                     ),
                                   ),
+                                  child: Visibility(
+                                    visible: currentUserPhoto != '',
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(68.0),
+                                      child: Image.network(
+                                        currentUserPhoto,
+                                        width: 68.0,
+                                        height: 68.0,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                            FlutterFlowIconButton(
-                              borderColor:
-                                  FlutterFlowTheme.of(context).secondary,
-                              borderRadius: 37.0,
-                              buttonSize: 37.0,
-                              fillColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              icon: Icon(
-                                Icons.add,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 21.0,
+                            if (currentUserPhoto == '')
+                              AuthUserStreamWidget(
+                                builder: (context) => Container(
+                                  width: 37.0,
+                                  height: 37.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondary,
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.add,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 21.0,
+                                  ),
+                                ),
                               ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
-                            ),
                           ],
                         ),
                       ),
@@ -250,20 +262,6 @@ class _ProfileManagerWidgetState extends State<ProfileManagerWidget> {
                             child: TextFormField(
                               controller: _model.nameTextController,
                               focusNode: _model.nameFocusNode,
-                              onChanged: (_) => EasyDebounce.debounce(
-                                '_model.nameTextController',
-                                const Duration(milliseconds: 2000),
-                                () async {
-                                  logFirebaseEvent(
-                                      'PROFILE_MANAGER_Name_ON_TEXTFIELD_CHANGE');
-                                  logFirebaseEvent('Name_backend_call');
-
-                                  await currentUserReference!
-                                      .update(createUsersRecordData(
-                                    userName: _model.nameTextController.text,
-                                  ));
-                                },
-                              ),
                               autofocus: false,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -288,28 +286,28 @@ class _ProfileManagerWidgetState extends State<ProfileManagerWidget> {
                                         FlutterFlowTheme.of(context).secondary,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(50.0),
+                                  borderRadius: BorderRadius.circular(14.0),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context).primary,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(50.0),
+                                  borderRadius: BorderRadius.circular(14.0),
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context).error,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(50.0),
+                                  borderRadius: BorderRadius.circular(14.0),
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: FlutterFlowTheme.of(context).error,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(50.0),
+                                  borderRadius: BorderRadius.circular(14.0),
                                 ),
                                 filled: true,
                                 fillColor: FlutterFlowTheme.of(context)
@@ -339,21 +337,6 @@ class _ProfileManagerWidgetState extends State<ProfileManagerWidget> {
                       child: TextFormField(
                         controller: _model.displayNameTextController,
                         focusNode: _model.displayNameFocusNode,
-                        onChanged: (_) => EasyDebounce.debounce(
-                          '_model.displayNameTextController',
-                          const Duration(milliseconds: 2000),
-                          () async {
-                            logFirebaseEvent(
-                                'PROFILE_MANAGER_DisplayName_ON_TEXTFIELD');
-                            logFirebaseEvent('DisplayName_backend_call');
-
-                            await currentUserReference!
-                                .update(createUsersRecordData(
-                              displayName:
-                                  _model.displayNameTextController.text,
-                            ));
-                          },
-                        ),
                         autofocus: false,
                         obscureText: false,
                         decoration: InputDecoration(
@@ -375,28 +358,28 @@ class _ProfileManagerWidgetState extends State<ProfileManagerWidget> {
                               color: FlutterFlowTheme.of(context).secondary,
                               width: 1.0,
                             ),
-                            borderRadius: BorderRadius.circular(50.0),
+                            borderRadius: BorderRadius.circular(14.0),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).primary,
                               width: 1.0,
                             ),
-                            borderRadius: BorderRadius.circular(50.0),
+                            borderRadius: BorderRadius.circular(14.0),
                           ),
                           errorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).error,
                               width: 1.0,
                             ),
-                            borderRadius: BorderRadius.circular(50.0),
+                            borderRadius: BorderRadius.circular(14.0),
                           ),
                           focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).error,
                               width: 1.0,
                             ),
-                            borderRadius: BorderRadius.circular(50.0),
+                            borderRadius: BorderRadius.circular(14.0),
                           ),
                           filled: true,
                           fillColor:
@@ -419,84 +402,79 @@ class _ProfileManagerWidgetState extends State<ProfileManagerWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
-                        child: SizedBox(
-                          width: MediaQuery.sizeOf(context).width * 0.8,
-                          child: TextFormField(
-                            controller: _model.emailTextController,
-                            focusNode: _model.emailFocusNode,
-                            autofocus: false,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintText: 'Change Email',
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(50.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(50.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(50.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(50.0),
-                              ),
-                              filled: true,
-                              fillColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 26.0, 16.0, 26.0),
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                        child: TextFormField(
+                          controller: _model.emailTextController,
+                          focusNode: _model.emailFocusNode,
+                          autofocus: false,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
                                 .override(
                                   fontFamily: 'Inter',
                                   letterSpacing: 0.0,
                                 ),
-                            keyboardType: TextInputType.emailAddress,
-                            cursorColor:
-                                FlutterFlowTheme.of(context).primaryText,
-                            validator: _model.emailTextControllerValidator
-                                .asValidator(context),
+                            hintText: 'Change Email',
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Inter',
+                                  letterSpacing: 0.0,
+                                ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).secondary,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(14.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).primary,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(14.0),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(14.0),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(14.0),
+                            ),
+                            filled: true,
+                            fillColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 26.0, 16.0, 26.0),
                           ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Inter',
+                                    letterSpacing: 0.0,
+                                  ),
+                          keyboardType: TextInputType.emailAddress,
+                          cursorColor: FlutterFlowTheme.of(context).primaryText,
+                          validator: _model.emailTextControllerValidator
+                              .asValidator(context),
                         ),
                       ),
                       FFButtonWidget(
                         onPressed: () async {
                           logFirebaseEvent(
-                              'PROFILE_MANAGER_PAGE_SaveEmail_ON_TAP');
+                              'PROFILE_MANAGER_PAGE_SaveInfo_ON_TAP');
                           if ((_model.emailTextController.text != '') &&
                               (_model.emailTextController.text !=
                                   currentUserEmail)) {
-                            logFirebaseEvent('SaveEmail_auth');
+                            logFirebaseEvent('SaveInfo_auth');
                             if (_model.emailTextController.text.isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
@@ -513,11 +491,21 @@ class _ProfileManagerWidgetState extends State<ProfileManagerWidget> {
                               context: context,
                             );
                             safeSetState(() {});
+
+                            logFirebaseEvent('SaveInfo_backend_call');
+
+                            await currentUserReference!
+                                .update(createUsersRecordData(
+                              displayName:
+                                  _model.displayNameTextController.text,
+                              userName: _model.nameTextController.text,
+                              photoUrl: _model.uploadedFileUrl,
+                            ));
                           } else {
                             return;
                           }
 
-                          logFirebaseEvent('SaveEmail_alert_dialog');
+                          logFirebaseEvent('SaveInfo_alert_dialog');
                           await showDialog(
                             context: context,
                             builder: (alertDialogContext) {
@@ -536,7 +524,6 @@ class _ProfileManagerWidgetState extends State<ProfileManagerWidget> {
                         },
                         text: 'Save',
                         options: FFButtonOptions(
-                          width: MediaQuery.sizeOf(context).width * 0.25,
                           height: 55.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
@@ -544,15 +531,16 @@ class _ProfileManagerWidgetState extends State<ProfileManagerWidget> {
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
-                              FlutterFlowTheme.of(context).titleMedium.override(
+                              FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Inter',
+                                    color: Colors.white,
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0.0,
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).secondary,
                           ),
-                          borderRadius: BorderRadius.circular(50.0),
+                          borderRadius: BorderRadius.circular(14.0),
                         ),
                       ),
                     ].divide(const SizedBox(width: 10.0)),
@@ -586,18 +574,20 @@ class _ProfileManagerWidgetState extends State<ProfileManagerWidget> {
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
-                          FlutterFlowTheme.of(context).titleMedium.override(
+                          FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Inter',
+                                color: Colors.white,
                                 letterSpacing: 0.0,
                               ),
                       elevation: 0.0,
                       borderSide: BorderSide(
                         color: FlutterFlowTheme.of(context).secondary,
                       ),
-                      borderRadius: BorderRadius.circular(50.0),
+                      borderRadius: BorderRadius.circular(14.0),
                     ),
                   ),
                   FFButtonWidget(
+                    key: const ValueKey('LogOut_q89j'),
                     onPressed: () async {
                       logFirebaseEvent('PROFILE_MANAGER_PAGE_LogOut_ON_TAP');
                       logFirebaseEvent('LogOut_auth');
@@ -615,17 +605,18 @@ class _ProfileManagerWidgetState extends State<ProfileManagerWidget> {
                           const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       iconPadding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: const Color(0xA4FF0000),
+                      color: FlutterFlowTheme.of(context).error,
                       textStyle:
-                          FlutterFlowTheme.of(context).titleMedium.override(
+                          FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Inter',
+                                color: Colors.white,
                                 letterSpacing: 0.0,
                               ),
                       elevation: 0.0,
                       borderSide: BorderSide(
                         color: FlutterFlowTheme.of(context).secondary,
                       ),
-                      borderRadius: BorderRadius.circular(50.0),
+                      borderRadius: BorderRadius.circular(14.0),
                     ),
                   ),
                 ].divide(const SizedBox(height: 24.0)),
@@ -636,7 +627,9 @@ class _ProfileManagerWidgetState extends State<ProfileManagerWidget> {
               child: wrapWithModel(
                 model: _model.navBarModel,
                 updateCallback: () => safeSetState(() {}),
-                child: const NavBarWidget(),
+                child: const NavBarWidget(
+                  key: ValueKey('NavBar_usng'),
+                ),
               ),
             ),
           ],

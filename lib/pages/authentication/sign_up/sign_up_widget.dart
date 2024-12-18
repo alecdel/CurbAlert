@@ -47,7 +47,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -81,6 +84,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         SizedBox(
                           width: double.infinity,
                           child: TextFormField(
+                            key: const ValueKey('SignUp-Email_cdgl'),
                             controller: _model.signUpEmailTextController,
                             focusNode: _model.signUpEmailFocusNode,
                             autofocus: false,
@@ -105,28 +109,28 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   color: FlutterFlowTheme.of(context).secondary,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).primary,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
@@ -150,6 +154,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         SizedBox(
                           width: double.infinity,
                           child: TextFormField(
+                            key: const ValueKey('SignUp-Password_1r3r'),
                             controller: _model.signUpPasswordTextController,
                             focusNode: _model.signUpPasswordFocusNode,
                             autofocus: false,
@@ -174,28 +179,28 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   color: FlutterFlowTheme.of(context).secondary,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).primary,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
@@ -232,6 +237,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         SizedBox(
                           width: double.infinity,
                           child: TextFormField(
+                            key: const ValueKey('SignUp-ConfirmPassword_hrbf'),
                             controller:
                                 _model.signUpConfirmPasswordTextController,
                             focusNode: _model.signUpConfirmPasswordFocusNode,
@@ -258,28 +264,28 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   color: FlutterFlowTheme.of(context).secondary,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).primary,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
@@ -314,6 +320,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           ),
                         ),
                         FFButtonWidget(
+                          key: const ValueKey('SignUp-Button_fvzd'),
                           onPressed: () async {
                             logFirebaseEvent(
                                 'SIGN_UP_PAGE_SignUp-Button_ON_TAP');
@@ -351,9 +358,15 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 .doc(user.uid)
                                 .update(createUsersRecordData(
                                   email: _model.signUpEmailTextController.text,
-                                  photoUrl: 'default',
+                                  photoUrl:
+                                      'https://firebasestorage.googleapis.com/v0/b/curb-alert-sqkv43.appspot.com/o/users%2Fprofile.jpg?alt=media&token=1135ce24-73a2-4da2-b482-043242bf5ade',
                                   createdTime: getCurrentTimestamp,
                                 ));
+
+                            logFirebaseEvent('SignUp-Button_navigate_to');
+
+                            context.goNamedAuth(
+                                'ProfileManager', context.mounted);
 
                             logFirebaseEvent(
                                 'SignUp-Button_google_analytics_event');
@@ -363,9 +376,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 'SignUpButton': 'signUpButton',
                               },
                             );
-
-                            context.goNamedAuth(
-                                'availItems_HOME', context.mounted);
                           },
                           text: 'Register',
                           options: FFButtonOptions(
@@ -377,16 +387,18 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
-                                .titleMedium
+                                .titleSmall
                                 .override(
                                   fontFamily: 'Inter',
+                                  color: Colors.white,
+                                  fontSize: 20.0,
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).secondary,
                             ),
-                            borderRadius: BorderRadius.circular(50.0),
+                            borderRadius: BorderRadius.circular(14.0),
                           ),
                         ),
                       ].divide(const SizedBox(height: 24.0)),

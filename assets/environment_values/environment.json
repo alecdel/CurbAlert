@@ -1,0 +1,6 @@
+{
+  "itemExpiration": 30,
+"sessionTimeOut": 15.0,
+"distanceToView": 50,
+"chatLimit": 10
+}

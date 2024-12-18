@@ -125,6 +125,7 @@ class _FlutterFlowChoiceChipsState extends State<FlutterFlowChoiceChips> {
             label: Text(
               option.label,
               style: style.textStyle,
+              overflow: TextOverflow.ellipsis,
             ),
             labelPadding: style.labelPadding,
             avatar: option.iconData != null

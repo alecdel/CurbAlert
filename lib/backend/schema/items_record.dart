@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -55,6 +56,16 @@ class ItemsRecord extends FirestoreRecord {
   String get pickedUpBy => _pickedUpBy ?? '';
   bool hasPickedUpBy() => _pickedUpBy != null;
 
+  // "categories" field.
+  List<String>? _categories;
+  List<String> get categories => _categories ?? const [];
+  bool hasCategories() => _categories != null;
+
+  // "ownerDisplayName" field.
+  String? _ownerDisplayName;
+  String get ownerDisplayName => _ownerDisplayName ?? '';
+  bool hasOwnerDisplayName() => _ownerDisplayName != null;
+
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
     _details = snapshotData['details'] as String?;
@@ -64,6 +75,8 @@ class ItemsRecord extends FirestoreRecord {
     _location = snapshotData['location'] as LatLng?;
     _createdTime = snapshotData['created_time'] as DateTime?;
     _pickedUpBy = snapshotData['pickedUpBy'] as String?;
+    _categories = getDataList(snapshotData['categories']);
+    _ownerDisplayName = snapshotData['ownerDisplayName'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -108,6 +121,7 @@ Map<String, dynamic> createItemsRecordData({
   LatLng? location,
   DateTime? createdTime,
   String? pickedUpBy,
+  String? ownerDisplayName,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -119,6 +133,7 @@ Map<String, dynamic> createItemsRecordData({
       'location': location,
       'created_time': createdTime,
       'pickedUpBy': pickedUpBy,
+      'ownerDisplayName': ownerDisplayName,
     }.withoutNulls,
   );
 
@@ -130,6 +145,7 @@ class ItemsRecordDocumentEquality implements Equality<ItemsRecord> {
 
   @override
   bool equals(ItemsRecord? e1, ItemsRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.name == e2?.name &&
         e1?.details == e2?.details &&
         e1?.pickedUp == e2?.pickedUp &&
@@ -137,7 +153,9 @@ class ItemsRecordDocumentEquality implements Equality<ItemsRecord> {
         e1?.listingOwner == e2?.listingOwner &&
         e1?.location == e2?.location &&
         e1?.createdTime == e2?.createdTime &&
-        e1?.pickedUpBy == e2?.pickedUpBy;
+        e1?.pickedUpBy == e2?.pickedUpBy &&
+        listEquality.equals(e1?.categories, e2?.categories) &&
+        e1?.ownerDisplayName == e2?.ownerDisplayName;
   }
 
   @override
@@ -149,7 +167,9 @@ class ItemsRecordDocumentEquality implements Equality<ItemsRecord> {
         e?.listingOwner,
         e?.location,
         e?.createdTime,
-        e?.pickedUpBy
+        e?.pickedUpBy,
+        e?.categories,
+        e?.ownerDisplayName
       ]);
 
   @override

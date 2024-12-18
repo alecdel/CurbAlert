@@ -2,17 +2,19 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
 
 const kTransitionInfoKey = '__transition_info__';
+
+GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
 
 class AppStateNotifier extends ChangeNotifier {
   AppStateNotifier._();
@@ -67,18 +69,21 @@ class AppStateNotifier extends ChangeNotifier {
   }
 }
 
-GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
+GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
+    GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const AvailItemsHOMEWidget() : const SignInWidget(),
+      navigatorKey: appNavigatorKey,
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? entryPage ?? const AvailItemsHOMEWidget()
+          : const SignInWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
-              ? const AvailItemsHOMEWidget()
+              ? entryPage ?? const AvailItemsHOMEWidget()
               : const SignInWidget(),
         ),
         FFRoute(
@@ -118,12 +123,51 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'messages',
           path: '/messages',
           requireAuth: true,
-          builder: (context, params) => const MessagesWidget(),
+          builder: (context, params) => MessagesWidget(
+            seenbyRef: params.getParam(
+              'seenbyRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['chats', 'chat_messages'],
+            ),
+          ),
         ),
         FFRoute(
           name: 'ChatWindow',
           path: '/chatWindow',
-          builder: (context, params) => const ChatWindowWidget(),
+          requireAuth: true,
+          asyncParams: {
+            'chatTitle': getDoc(['chats'], ChatsRecord.fromSnapshot),
+            'chatID': getDoc(['chats'], ChatsRecord.fromSnapshot),
+          },
+          builder: (context, params) => ChatWindowWidget(
+            chatRef: params.getParam(
+              'chatRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['chats'],
+            ),
+            chatTitle: params.getParam(
+              'chatTitle',
+              ParamType.Document,
+            ),
+            chatID: params.getParam(
+              'chatID',
+              ParamType.Document,
+            ),
+            itemRef: params.getParam(
+              'itemRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['items'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'map',
+          path: '/map',
+          requireAuth: true,
+          builder: (context, params) => const MapWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -308,14 +352,14 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
+              ? Container(
+                  color: Colors.transparent,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/Curb_Alert!_logo_no_bg.png',
+                      width: double.infinity,
+                      height: double.infinity,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 )

@@ -41,7 +41,10 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -75,6 +78,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                         SizedBox(
                           width: double.infinity,
                           child: TextFormField(
+                            key: const ValueKey('ForgotPassword-Email_oxca'),
                             controller:
                                 _model.forgotPasswordEmailTextController,
                             focusNode: _model.forgotPasswordEmailFocusNode,
@@ -100,28 +104,28 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                   color: FlutterFlowTheme.of(context).secondary,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).primary,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
@@ -144,6 +148,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                           ),
                         ),
                         FFButtonWidget(
+                          key: const ValueKey('ResetPassword-Button_izuj'),
                           onPressed: () async {
                             logFirebaseEvent(
                                 'FORGOT_PASSWORD_ResetPassword-Button_ON_');
@@ -201,18 +206,18 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
-                                .titleLarge
+                                .titleSmall
                                 .override(
-                                  fontFamily: 'Sora',
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                  fontFamily: 'Inter',
+                                  color: Colors.white,
+                                  fontSize: 20.0,
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).secondary,
                             ),
-                            borderRadius: BorderRadius.circular(50.0),
+                            borderRadius: BorderRadius.circular(14.0),
                           ),
                         ),
                         InkWell(

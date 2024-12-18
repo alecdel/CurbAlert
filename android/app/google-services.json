@@ -7,6 +7,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:306021565398:android:0154b33e2a865d8cd3da77",
+        "android_client_info": {
+          "package_name": "com.uricsc305.curbalert"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO0d9_yyCNH0F7LkQkkegTkohJ_h3FJEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:306021565398:android:bec3d683c08d2112d3da77",
         "android_client_info": {
           "package_name": "edu.uri.csc305.curbalert"

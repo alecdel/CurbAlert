@@ -42,3 +42,10 @@ bool isLocationEnabled(LatLng location) {
   // write a function to check if the current device location is 0,0. if it is return false if it isnt return true
   return location.latitude != 0.0 && location.longitude != 0.0;
 }
+
+bool showSearchResult(
+  String textSearchFor,
+  String textSearchIn,
+) {
+  return textSearchIn.toLowerCase().contains(textSearchFor.toLowerCase());
+}
