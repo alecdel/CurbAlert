@@ -111,6 +111,7 @@ class _SellItemsWidgetState extends State<SellItemsWidget> {
                             snapshot.data!;
 
                         return GridView.builder(
+                          key: const ValueKey('GridView_y74m'),
                           padding: EdgeInsets.zero,
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(

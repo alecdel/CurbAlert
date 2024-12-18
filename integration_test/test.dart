@@ -279,6 +279,7 @@ void main() async {
       of: find.byKey(ValueKey('NavBar_y9o5')),
       matching: find.byKey(ValueKey('userItemsButton_hqej')),
     ));
+    expect(find.byKey(ValueKey('GridView_y74m')), findsOneWidget);
     await tester.pumpAndSettle(Duration(milliseconds: 3000));
   });
 }
