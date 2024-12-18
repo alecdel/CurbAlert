@@ -1,32 +1,55 @@
-# Curb Alert
+# Curb Alert! 🛋️
 
-A new Flutter project.
+Curb Alert! is a mobile app designed to help people share and find items that are placed on curbs for free pickup. Whether you're downsizing, decluttering, or just giving away items you no longer need, Curb Alert! connects you with nearby users who might find value in what you're offering.
 
-## Getting Started
+## Table of Contents
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Usage](#usage)
+- [Contributors](#contributors)
 
-FlutterFlow projects are built to run on the Flutter _stable_ release.
+## Features
 
-## Integration Tests
+- **Post Items**: Quickly post items you want to give away by uploading a picture, adding a title, description, and your location.
+- **Browse Items**: Browse a feed of items available near you, displayed within a set radius.
+- **Geolocation**: Locate available items on a map with built-in geolocation features.
+- **Notifications**: Receive notifications when new items are posted in your area.
+- **User Authentication**: Sign up or log in via email with Firebase Authentication.
+- **Ads Integration**: Revenue is generated through ad placements within the app.
 
-To test on a real iOS / Android device, first connect the device and run the following command from the root of the project:
+## Technology Stack
 
-```bash
-flutter test integration_test/test.dart
-```
+- **Frontend**: Built using [FlutterFlow](https://flutterflow.io/) for cross-platform mobile development.
+- **Backend**: Powered by [Google Firebase](https://firebase.google.com/).
+  - **Authentication**: Firebase Authentication for secure user login and account management.
+  - **Database**: Firebase Firestore for storing item listings, user profiles, and app data.
+  - **Storage**: Firebase Storage for saving item photos.
+  - **Notifications**: Firebase Cloud Messaging for push notifications.
+- **Maps API**: Google Maps API for geolocation and showing nearby curb items on a map.
 
-To test on a web browser, first launch `chromedriver` as follows:
-```bash
-chromedriver --port=4444
-```
+## Usage
 
-Then from the root of the project, run the following command:
-```bash
-flutter drive \
-  --driver=test_driver/integration_test.dart \
-  --target=integration_test/test.dart \
-  -d chrome
-```
+### Post an Item:
+1. Tap the **"Post"** button on the home screen.
+2. Upload a picture, add a title and description, and set the location where the item is available.
 
-Find more information about running Flutter integration tests [here](https://docs.flutter.dev/cookbook/testing/integration/introduction#5-run-the-integration-test).
+### Browse Items:
+1. View a list or map of available items within a certain radius.
+2. Tap on an item to view more details, including the address and description.
 
-Refer to this guide for instructions on running the tests on [Firebase Test Lab](https://github.com/flutter/flutter/tree/main/packages/integration_test#firebase-test-lab).
+### Notifications:
+- Enable notifications to receive alerts when new items are posted near you.
+
+### Manage Account:
+- Create an account or log in to manage your posted items and preferences.
+
+## Contributors
+- Ryan Megna
+- Alec Dello Lacono
+- Jacob Lacouture
+- Dominic Tucchio
+
+
+
+
+  
