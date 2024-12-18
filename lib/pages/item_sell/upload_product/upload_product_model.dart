@@ -7,14 +7,10 @@ class UploadProductModel extends FlutterFlowModel<UploadProductWidget> {
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
-  bool isDataUploading1 = false;
-  FFUploadedFile uploadedLocalFile1 =
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
-
-  bool isDataUploading2 = false;
-  FFUploadedFile uploadedLocalFile2 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl2 = '';
+  String uploadedFileUrl = '';
 
   // State field(s) for productName widget.
   FocusNode? productNameFocusNode;
@@ -28,10 +24,9 @@ class UploadProductModel extends FlutterFlowModel<UploadProductWidget> {
   FFPlace placePickerValue = const FFPlace();
   // State field(s) for ChoiceChips widget.
   FormFieldController<List<String>>? choiceChipsValueController;
-  String? get choiceChipsValue =>
-      choiceChipsValueController?.value?.firstOrNull;
-  set choiceChipsValue(String? val) =>
-      choiceChipsValueController?.value = val != null ? [val] : [];
+  List<String>? get choiceChipsValues => choiceChipsValueController?.value;
+  set choiceChipsValues(List<String>? val) =>
+      choiceChipsValueController?.value = val;
 
   @override
   void initState(BuildContext context) {}

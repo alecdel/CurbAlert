@@ -115,11 +115,17 @@ class _PromoterScoreSurveyWidgetState extends State<PromoterScoreSurveyWidget> {
                     'score': _model.dropDownValue,
                   },
                 );
-                logFirebaseEvent('Button_backend_call');
+                if (_model.dropDownValue != null &&
+                    _model.dropDownValue != '') {
+                  logFirebaseEvent('Button_backend_call');
 
-                await currentUserReference!.update(createUsersRecordData(
-                  netPromoterScore: _model.dropDownValue,
-                ));
+                  await currentUserReference!.update(createUsersRecordData(
+                    netPromoterScore: _model.dropDownValue,
+                  ));
+                } else {
+                  return;
+                }
+
                 logFirebaseEvent('Button_bottom_sheet');
                 Navigator.pop(context);
               },
@@ -130,15 +136,16 @@ class _PromoterScoreSurveyWidgetState extends State<PromoterScoreSurveyWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).primary,
-                textStyle: FlutterFlowTheme.of(context).titleMedium.override(
+                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Inter',
+                      color: Colors.white,
                       letterSpacing: 0.0,
                     ),
                 elevation: 0.0,
                 borderSide: BorderSide(
                   color: FlutterFlowTheme.of(context).secondary,
                 ),
-                borderRadius: BorderRadius.circular(50.0),
+                borderRadius: BorderRadius.circular(14.0),
               ),
             ),
           ].divide(const SizedBox(height: 24.0)),

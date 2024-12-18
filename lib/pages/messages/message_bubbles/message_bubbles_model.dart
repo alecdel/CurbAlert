@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'chat_window_widget.dart' show ChatWindowWidget;
+import 'message_bubbles_widget.dart' show MessageBubblesWidget;
 import 'package:flutter/material.dart';
 
-class ChatWindowModel extends FlutterFlowModel<ChatWindowWidget> {
+class MessageBubblesModel extends FlutterFlowModel<MessageBubblesWidget> {
   @override
   void initState(BuildContext context) {}
 

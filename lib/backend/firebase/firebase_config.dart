@@ -10,7 +10,8 @@ Future initFirebase() async {
             projectId: "curb-alert-sqkv43",
             storageBucket: "curb-alert-sqkv43.appspot.com",
             messagingSenderId: "306021565398",
-            appId: "1:306021565398:web:16c24c8f454cd49ed3da77"));
+            appId: "1:306021565398:web:16c24c8f454cd49ed3da77",
+            measurementId: "G-Q71RBGQVHS"));
   } else {
     await Firebase.initializeApp();
   }

@@ -97,6 +97,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               FlutterFlowIconButton(
+                key: const ValueKey('itemsNearButton_ko37'),
                 borderColor: Colors.transparent,
                 borderRadius: 30.0,
                 borderWidth: 1.0,
@@ -126,12 +127,13 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                 },
               ),
               FlutterFlowIconButton(
+                key: const ValueKey('userItemsButton_hqej'),
                 borderColor: Colors.transparent,
                 borderRadius: 30.0,
                 borderWidth: 1.0,
                 buttonSize: 50.0,
                 icon: const Icon(
-                  Icons.sell_rounded,
+                  Icons.bookmark,
                   color: Color(0xFF9299A1),
                   size: 24.0,
                 ),
@@ -139,7 +141,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                   logFirebaseEvent('NAV_BAR_COMP_userItemsButton_ON_TAP');
                   logFirebaseEvent('userItemsButton_navigate_to');
 
-                  context.goNamed(
+                  context.pushNamed(
                     'sellItems',
                     extra: <String, dynamic>{
                       kTransitionInfoKey: const TransitionInfo(
@@ -151,7 +153,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                   );
 
                   logFirebaseEvent('userItemsButton_google_analytics_event');
-                  logFirebaseEvent('SellItemsVisited');
+                  logFirebaseEvent('wentToSellItems');
                 },
               ),
               Column(
@@ -163,7 +165,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                     child: FlutterFlowIconButton(
                       borderColor: Colors.transparent,
-                      borderRadius: 4.0,
+                      borderRadius: 14.0,
                       borderWidth: 1.0,
                       buttonSize: 60.0,
                       fillColor: FlutterFlowTheme.of(context).primary,
@@ -196,6 +198,7 @@ class _NavBarWidgetState extends State<NavBarWidget> {
                 ],
               ),
               FlutterFlowIconButton(
+                key: const ValueKey('IconButton_7rr4'),
                 borderColor: Colors.transparent,
                 borderRadius: 30.0,
                 borderWidth: 1.0,

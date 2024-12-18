@@ -13,6 +13,24 @@
           "order": "ASCENDING"
         }
       ]
+    },
+    {
+      "collectionGroup": "chats",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "enabled",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "members_ref",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "recent_update",
+          "order": "DESCENDING"
+        }
+      ]
     }
   ]
 }

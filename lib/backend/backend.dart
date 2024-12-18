@@ -8,7 +8,7 @@ import 'schema/util/firestore_util.dart';
 import 'schema/users_record.dart';
 import 'schema/items_record.dart';
 import 'schema/chats_record.dart';
-import 'schema/message_record.dart';
+import 'schema/chat_messages_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -20,7 +20,7 @@ export 'schema/util/schema_util.dart';
 export 'schema/users_record.dart';
 export 'schema/items_record.dart';
 export 'schema/chats_record.dart';
-export 'schema/message_record.dart';
+export 'schema/chat_messages_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -133,41 +133,41 @@ Future<List<ChatsRecord>> queryChatsRecordOnce({
       singleRecord: singleRecord,
     );
 
-/// Functions to query MessageRecords (as a Stream and as a Future).
-Future<int> queryMessageRecordCount({
+/// Functions to query ChatMessagesRecords (as a Stream and as a Future).
+Future<int> queryChatMessagesRecordCount({
   DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   int limit = -1,
 }) =>
     queryCollectionCount(
-      MessageRecord.collection(parent),
+      ChatMessagesRecord.collection(parent),
       queryBuilder: queryBuilder,
       limit: limit,
     );
 
-Stream<List<MessageRecord>> queryMessageRecord({
+Stream<List<ChatMessagesRecord>> queryChatMessagesRecord({
   DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollection(
-      MessageRecord.collection(parent),
-      MessageRecord.fromSnapshot,
+      ChatMessagesRecord.collection(parent),
+      ChatMessagesRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<List<MessageRecord>> queryMessageRecordOnce({
+Future<List<ChatMessagesRecord>> queryChatMessagesRecordOnce({
   DocumentReference? parent,
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollectionOnce(
-      MessageRecord.collection(parent),
-      MessageRecord.fromSnapshot,
+      ChatMessagesRecord.collection(parent),
+      ChatMessagesRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

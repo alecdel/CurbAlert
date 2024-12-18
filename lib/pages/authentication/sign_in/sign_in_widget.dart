@@ -43,7 +43,10 @@ class _SignInWidgetState extends State<SignInWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -76,6 +79,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                         SizedBox(
                           width: double.infinity,
                           child: TextFormField(
+                            key: const ValueKey('Login-Email_f4p0'),
                             controller: _model.loginEmailTextController,
                             focusNode: _model.loginEmailFocusNode,
                             autofocus: false,
@@ -100,28 +104,28 @@ class _SignInWidgetState extends State<SignInWidget> {
                                   color: FlutterFlowTheme.of(context).secondary,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).primary,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
@@ -145,6 +149,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                         SizedBox(
                           width: double.infinity,
                           child: TextFormField(
+                            key: const ValueKey('Login-Password_d88s'),
                             controller: _model.loginPasswordTextController,
                             focusNode: _model.loginPasswordFocusNode,
                             autofocus: false,
@@ -169,28 +174,28 @@ class _SignInWidgetState extends State<SignInWidget> {
                                   color: FlutterFlowTheme.of(context).secondary,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).primary,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(50.0),
+                                borderRadius: BorderRadius.circular(14.0),
                               ),
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
@@ -225,6 +230,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                           ),
                         ),
                         FFButtonWidget(
+                          key: const ValueKey('Login-Button_kzl5'),
                           onPressed: () async {
                             logFirebaseEvent(
                                 'SIGN_IN_PAGE_Login-Button_ON_TAP');
@@ -282,16 +288,18 @@ class _SignInWidgetState extends State<SignInWidget> {
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
-                                .titleMedium
+                                .titleSmall
                                 .override(
                                   fontFamily: 'Inter',
+                                  color: Colors.white,
+                                  fontSize: 20.0,
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 0.0,
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).secondary,
                             ),
-                            borderRadius: BorderRadius.circular(50.0),
+                            borderRadius: BorderRadius.circular(14.0),
                           ),
                         ),
                       ].divide(const SizedBox(height: 24.0)),
@@ -311,6 +319,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                     context.pushNamed('ForgotPassword');
                   },
                   child: Text(
+                    key: const ValueKey('Login-ForgotPassword_20du'),
                     'Forgot password?',
                     style: FlutterFlowTheme.of(context).titleMedium.override(
                           fontFamily: 'Inter',
@@ -333,6 +342,7 @@ class _SignInWidgetState extends State<SignInWidget> {
                     context.pushNamed('SignUp');
                   },
                   child: Text(
+                    key: const ValueKey('DontHaveAccount-Navigation_h045'),
                     'Don\'t have an account? Register',
                     style: FlutterFlowTheme.of(context).titleMedium.override(
                           fontFamily: 'Inter',
